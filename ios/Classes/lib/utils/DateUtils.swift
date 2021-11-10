@@ -33,9 +33,14 @@ class DateUtils {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: timeZone ?? DateUtils.localTimeZone.identifier)
         dateFormatter.dateFormat = Definitions.DATE_FORMAT
-
-        let date = dateFormatter.string(from: dateTime!)
-        return date
+        print('kaand' + dateTime)
+       
+        do {
+            let date = dateFormatter.string(from: dateTime!)
+            return date
+        } catch error {
+            print('kaane' + error)
+        }
     }
 
     public static func getUTCTextDate() -> String {

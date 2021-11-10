@@ -6,10 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // TO AVOID CONFLICT WITH MATERIAL DATE UTILS CLASS
-import 'package:awesome_notifications/awesome_notifications.dart'
-    hide DateUtils;
-import 'package:awesome_notifications/awesome_notifications.dart' as Utils
-    show DateUtils;
+import 'package:awesome_notifications/awesome_notifications.dart' hide DateUtils;
+import 'package:awesome_notifications/awesome_notifications.dart' as Utils show DateUtils;
 
 import 'package:awesome_notifications_example/models/media_model.dart';
 import 'package:awesome_notifications_example/utils/common_functions.dart';
@@ -20,8 +18,7 @@ import 'package:url_launcher/url_launcher.dart';
     LARGE TEXT FOR OUR NOTIFICATIONS TESTS
 ************************************************ */
 
-String lorenIpsumText =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
+String lorenIpsumText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
     'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip '
     'ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat '
     'nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit'
@@ -35,7 +32,7 @@ Future<void> externalUrl(String url) async {
   }
 }
 
-int createUniqueID(int maxValue){
+int createUniqueID(int maxValue) {
   Random random = new Random();
   return random.nextInt(maxValue);
 }
@@ -51,49 +48,48 @@ Future<bool> redirectToPermissionsPage() async {
 
 Future<bool> requestPermissionToSendNotifications(BuildContext context) async {
   bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
-  if(!isAllowed){
+  if (!isAllowed) {
     await showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: Color(0xfffbfbfb),
-          title: Text('Get Notified!',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600)),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'assets/images/animated-bell.gif',
-                height: 200,
-                fit: BoxFit.fitWidth,
+              backgroundColor: Color(0xfffbfbfb),
+              title: Text('Get Notified!',
+                  textAlign: TextAlign.center, style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600)),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/images/animated-bell.gif',
+                    height: 200,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  Text(
+                    'Allow Awesome Notifications to send you beautiful notifications!',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              Text(
-                'Allow Awesome Notifications to send you beautiful notifications!',
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-                onPressed: (){ Navigator.pop(context); },
-                child: Text(
-                  'Later',
-                  style: TextStyle(color: Colors.grey, fontSize: 18),
-                )
-            ),
-            TextButton(
-              onPressed: () async {
-                isAllowed = await AwesomeNotifications().requestPermissionToSendNotifications();
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Allow',
-                style: TextStyle(color: Colors.deepPurple, fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
-        )
-    );
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Later',
+                      style: TextStyle(color: Colors.grey, fontSize: 18),
+                    )),
+                TextButton(
+                  onPressed: () async {
+                    isAllowed = await AwesomeNotifications().requestPermissionToSendNotifications();
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Allow',
+                    style: TextStyle(color: Colors.deepPurple, fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ));
   }
   return isAllowed;
 }
@@ -104,28 +100,27 @@ Future<bool> requestPermissionToSendNotifications(BuildContext context) async {
 
 Future<void> showBasicNotification(int id) async {
   await AwesomeNotifications().createNotification(
-    content: NotificationContent(
-      id: id,
-      channelKey: 'basic_channel',
-      title: 'Simple Notification',
-      body: 'Simple body',
-    )
-  );
+      content: NotificationContent(
+    id: id,
+    channelKey: 'basic_channel',
+    title: 'Simple Notification',
+    body: 'Simple body',
+  ));
 }
 
 Future<void> showEmojiNotification(int id) async {
   await AwesomeNotifications().createNotification(
-    content: NotificationContent(
-      id: id,
-      channelKey: 'basic_channel',
-      title: 'Emojis are awesome too! ' +
-          Emojis.smile_face_with_tongue +
-          Emojis.smile_rolling_on_the_floor_laughing +
-          Emojis.smile_smiling_face_with_heart_eyes,
-      body:
-          'Simple body with a bunch of Emojis! ${Emojis.transport_police_car} ${Emojis.animals_dog} ${Emojis.flag_UnitedStates} ${Emojis.person_baby}',
-      bigPicture: 'https://tecnoblog.net/wp-content/uploads/2019/09/emoji.jpg',
-      notificationLayout: NotificationLayout.BigPicture,
+      content: NotificationContent(
+    id: id,
+    channelKey: 'basic_channel',
+    title: 'Emojis are awesome too! ' +
+        Emojis.smile_face_with_tongue +
+        Emojis.smile_rolling_on_the_floor_laughing +
+        Emojis.smile_smiling_face_with_heart_eyes,
+    body:
+        'Simple body with a bunch of Emojis! ${Emojis.transport_police_car} ${Emojis.animals_dog} ${Emojis.flag_UnitedStates} ${Emojis.person_baby}',
+    bigPicture: 'https://tecnoblog.net/wp-content/uploads/2019/09/emoji.jpg',
+    notificationLayout: NotificationLayout.BigPicture,
   ));
 }
 
@@ -142,27 +137,18 @@ Future<void> showNotificationWithPayloadContent(int id) async {
 Future<void> showNotificationWithoutTitle(int id) async {
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
-          id: id,
-          channelKey: 'basic_channel',
-          body: 'Only a simple notification',
-          payload: {'uuid': 'uuid-test'}));
+          id: id, channelKey: 'basic_channel', body: 'Only a simple notification', payload: {'uuid': 'uuid-test'}));
 }
 
 Future<void> showNotificationWithoutBody(int id) async {
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
-          id: id,
-          channelKey: 'basic_channel',
-          title: 'plain title',
-          payload: {'uuid': 'uuid-test'}));
+          id: id, channelKey: 'basic_channel', title: 'plain title', payload: {'uuid': 'uuid-test'}));
 }
 
 Future<void> sendBackgroundNotification(int id) async {
   await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-          id: id,
-          channelKey: 'basic_channel',
-          payload: {'secret-command': 'block_user'}));
+      content: NotificationContent(id: id, channelKey: 'basic_channel', payload: {'secret-command': 'block_user'}));
 }
 
 /* *********************************************
@@ -176,8 +162,7 @@ Future<void> showBadgeNotification(int id) async {
           channelKey: 'badge_channel',
           title: 'Badge test notification',
           body: 'This notification does activate badge indicator'),
-      schedule: NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
-  );
+      schedule: NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()));
 }
 
 Future<void> showWithoutBadgeNotification(int id) async {
@@ -187,8 +172,7 @@ Future<void> showWithoutBadgeNotification(int id) async {
           channelKey: 'basic_channel',
           title: 'Badge test notification',
           body: 'This notification does not activate badge indicator'),
-      schedule: NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
-  );
+      schedule: NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()));
 }
 
 // ON BADGE METHODS, NULL CHANNEL SETS THE GLOBAL COUNTER
@@ -227,10 +211,8 @@ Future<void> showNotificationWithActionButtons(int id) async {
           body: 'Hi there!',
           payload: {'uuid': 'user-profile-uuid'}),
       actionButtons: [
-        NotificationActionButton(
-            key: 'READ', label: 'Mark as read', autoDismissable: true),
-        NotificationActionButton(
-            key: 'PROFILE', label: 'Profile', autoDismissable: true, enabled: false)
+        NotificationActionButton(key: 'READ', label: 'Mark as read', autoDismissable: true),
+        NotificationActionButton(key: 'PROFILE', label: 'Profile', autoDismissable: true, enabled: false)
       ]);
 }
 
@@ -243,12 +225,9 @@ Future<void> showNotificationWithIconsAndActionButtons(int id) async {
           body: 'Hi there!',
           payload: {'uuid': 'user-profile-uuid'}),
       actionButtons: [
-        NotificationActionButton(
-            key: 'READ', label: 'Mark as read', autoDismissable: true),
-        NotificationActionButton(
-            key: 'PROFILE', label: 'Profile', autoDismissable: true, color: Colors.green),
-        NotificationActionButton(
-            key: 'DISMISS', label: 'Dismiss', autoDismissable: true, isDangerousOption: true)
+        NotificationActionButton(key: 'READ', label: 'Mark as read', autoDismissable: true),
+        NotificationActionButton(key: 'PROFILE', label: 'Profile', autoDismissable: true, color: Colors.green),
+        NotificationActionButton(key: 'DISMISS', label: 'Dismiss', autoDismissable: true, isDangerousOption: true)
       ]);
 }
 
@@ -267,10 +246,8 @@ Future<void> showNotificationWithActionButtonsAndReply(int id) async {
           autoDismissable: true,
           buttonType: ActionButtonType.InputField,
         ),
-        NotificationActionButton(
-            key: 'READ', label: 'Mark as read', autoDismissable: true),
-        NotificationActionButton(
-            key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
+        NotificationActionButton(key: 'READ', label: 'Mark as read', autoDismissable: true),
+        NotificationActionButton(key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
       ]);
 }
 
@@ -315,8 +292,7 @@ Future<void> showUnlockedNotification(int id) async {
     NOTIFICATION CHANNELS MANIPULATION
 ************************************************ */
 
-Future<void> showNotificationImportance(
-    int id, NotificationImportance importance) async {
+Future<void> showNotificationImportance(int id, NotificationImportance importance) async {
   String importanceKey = importance.toString().toLowerCase().split('.').last;
   String channelKey = 'importance_' + importanceKey + '_channel';
   String title = 'Importance levels (' + importanceKey + ')';
@@ -333,11 +309,7 @@ Future<void> showNotificationImportance(
 
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
-          id: id,
-          channelKey: channelKey,
-          title: title,
-          body: body,
-          payload: {'uuid': 'uuid-test'}));
+          id: id, channelKey: channelKey, title: title, body: body, payload: {'uuid': 'uuid-test'}));
 }
 
 /* *********************************************
@@ -348,8 +320,7 @@ Future<void> createTestChannel(String channelName) async {
   await AwesomeNotifications().setChannel(NotificationChannel(
       channelKey: channelName.toLowerCase().replaceAll(' ', '_'),
       channelName: channelName,
-      channelDescription:
-          "Channel created to test the channels manipulation."));
+      channelDescription: "Channel created to test the channels manipulation."));
 }
 
 Future<void> updateTestChannel(String channelName) async {
@@ -360,8 +331,7 @@ Future<void> updateTestChannel(String channelName) async {
 }
 
 Future<void> removeTestChannel(String channelName) async {
-  await AwesomeNotifications()
-      .removeChannel(channelName.toLowerCase().replaceAll(' ', '_'));
+  await AwesomeNotifications().removeChannel(channelName.toLowerCase().replaceAll(' ', '_'));
 }
 
 /* *********************************************
@@ -376,8 +346,7 @@ Future<void> delayNotification(int id) async {
           title: 'scheduled title',
           body: 'scheduled body',
           payload: {'uuid': 'uuid-test'}),
-      schedule: NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
-  );
+      schedule: NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()));
 }
 
 /* *********************************************
@@ -419,8 +388,7 @@ Future<void> showCustomVibrationNotification(int id) async {
       channelKey: "custom_vibration",
       channelName: "Custom vibration",
       channelDescription: "Channel created on the fly with custom vibration",
-      vibrationPattern:
-          Int64List.fromList([0, 1000, 200, 200, 1000, 1500, 200, 200]),
+      vibrationPattern: Int64List.fromList([0, 1000, 200, 200, 1000, 1500, 200, 200]),
       ledOnMs: 1000,
       ledOffMs: 500));
 
@@ -455,8 +423,7 @@ Future<void> redNotification(int id, bool delayLEDTests) async {
           id: id,
           channelKey: "colorful_notification",
           title: "<font color='${Colors.red.value}'>Red Notification</font>",
-          body:
-              "<font color='${Colors.red.value}'>A colorful notification</font>",
+          body: "<font color='${Colors.red.value}'>A colorful notification</font>",
           payload: {'uuid': 'uuid-red'}),
       actionButtons: [
         NotificationActionButton(
@@ -465,12 +432,11 @@ Future<void> redNotification(int id, bool delayLEDTests) async {
           autoDismissable: true,
           buttonType: ActionButtonType.InputField,
         ),
-        NotificationActionButton(
-            key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
+        NotificationActionButton(key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
       ],
-      schedule: delayLEDTests ? NotificationInterval(
-          interval: 5,
-          timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()) : null);
+      schedule: delayLEDTests
+          ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
+          : null);
 }
 
 Future<void> blueNotification(int id, bool delayLEDTests) async {
@@ -488,8 +454,7 @@ Future<void> blueNotification(int id, bool delayLEDTests) async {
       content: NotificationContent(
           id: id,
           channelKey: "colorful_notification",
-          title:
-              '<font color="${Colors.blueAccent.value}">Blue Notification</font>',
+          title: '<font color="${Colors.blueAccent.value}">Blue Notification</font>',
           body: "<font color='${Colors.blueAccent.value}'>A colorful notification</font>",
           payload: {'uuid': 'uuid-blue'}),
       actionButtons: [
@@ -499,10 +464,11 @@ Future<void> blueNotification(int id, bool delayLEDTests) async {
           autoDismissable: true,
           buttonType: ActionButtonType.InputField,
         ),
-        NotificationActionButton(
-            key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
+        NotificationActionButton(key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
       ],
-      schedule: delayLEDTests ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()) : null);
+      schedule: delayLEDTests
+          ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
+          : null);
 }
 
 Future<void> yellowNotification(int id, bool delayLEDTests) async {
@@ -531,10 +497,11 @@ Future<void> yellowNotification(int id, bool delayLEDTests) async {
           autoDismissable: true,
           buttonType: ActionButtonType.InputField,
         ),
-        NotificationActionButton(
-            key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
+        NotificationActionButton(key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
       ],
-      schedule: delayLEDTests ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()) : null);
+      schedule: delayLEDTests
+          ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
+          : null);
 }
 
 Future<void> purpleNotification(int id, bool delayLEDTests) async {
@@ -552,8 +519,7 @@ Future<void> purpleNotification(int id, bool delayLEDTests) async {
       content: NotificationContent(
           id: id,
           channelKey: "colorful_notification",
-          title:
-              '<font color="${Colors.deepPurple.value}">Purple Notification</font>',
+          title: '<font color="${Colors.deepPurple.value}">Purple Notification</font>',
           body: "<font color='${Colors.deepPurple.value}'>A colorful notification</font>",
           payload: {'uuid': 'uuid-purple'}),
       actionButtons: [
@@ -563,10 +529,11 @@ Future<void> purpleNotification(int id, bool delayLEDTests) async {
           autoDismissable: true,
           buttonType: ActionButtonType.InputField,
         ),
-        NotificationActionButton(
-            key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
+        NotificationActionButton(key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
       ],
-      schedule: delayLEDTests ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()) : null);
+      schedule: delayLEDTests
+          ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
+          : null);
 }
 
 Future<void> greenNotification(int id, bool delayLEDTests) async {
@@ -584,8 +551,7 @@ Future<void> greenNotification(int id, bool delayLEDTests) async {
       content: NotificationContent(
           id: id,
           channelKey: "colorful_notification",
-          title:
-              '<font color="${Colors.lightGreen.value}">Green Notification</font>',
+          title: '<font color="${Colors.lightGreen.value}">Green Notification</font>',
           body: "<font color='${Colors.lightGreen.value}'>A colorful notification</font>",
           payload: {'uuid': 'uuid-green'}),
       actionButtons: [
@@ -595,11 +561,11 @@ Future<void> greenNotification(int id, bool delayLEDTests) async {
           autoDismissable: true,
           buttonType: ActionButtonType.InputField,
         ),
-        NotificationActionButton(
-            key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
+        NotificationActionButton(key: 'ARCHIVE', label: 'Archive', autoDismissable: true)
       ],
-      schedule: delayLEDTests ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier()) : null
-  );
+      schedule: delayLEDTests
+          ? NotificationInterval(interval: 5, timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier())
+          : null);
 }
 
 /* *********************************************
@@ -616,9 +582,7 @@ Future<void> showCustomSoundNotification(int id) async {
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture: 'asset://assets/images/fireman-hero.jpg',
           color: Colors.yellow,
-          payload: {
-        'secret': 'the green ranger and the white ranger are the same person'
-      }));
+          payload: {'secret': 'the green ranger and the white ranger are the same person'}));
 }
 
 /* *********************************************
@@ -635,8 +599,7 @@ Future<void> showNotificationWithWakeUp(int id) async {
           wakeUpScreen: true,
           criticalAlert: true,
           notificationLayout: NotificationLayout.BigPicture,
-          bigPicture:
-          'https://media.tenor.com/images/5591f440176598f96050b09c943052c0/tenor.png',
+          bigPicture: 'https://media.tenor.com/images/5591f440176598f96050b09c943052c0/tenor.png',
           color: Colors.blueGrey),
       schedule: NotificationInterval(interval: 5));
 }
@@ -654,7 +617,7 @@ Future<void> showNotificationWithNoSound(int id) async {
           body: 'Shhhhhh!!!',
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture:
-          'https://image.freepik.com/fotos-gratis/medico-serio-mostrando-o-gesto-de-silencio_1262-17188.jpg',
+              'https://image.freepik.com/fotos-gratis/medico-serio-mostrando-o-gesto-de-silencio_1262-17188.jpg',
           color: Colors.blueGrey,
           payload: {'advice': 'shhhhhhh'}));
 }
@@ -690,8 +653,7 @@ Future<void> showBigPictureAssetNotification(int id) async {
 /// Just to simulates a file already saved inside device storage
 Future<void> showBigPictureFileNotification(int id) async {
   String newFilePath = await downloadAndSaveImageOnDisk(
-      'https://images.freeimages.com/images/large-previews/be7/puppy-2-1456421.jpg',
-      'newTestImage.jpg');
+      'https://images.freeimages.com/images/large-previews/be7/puppy-2-1456421.jpg', 'newTestImage.jpg');
 
   //String newFilePath = await saveImageOnDisk(AssetImage('assets/images/happy-dogs.jpg'),'newTestImage.jpg');
   newFilePath = newFilePath.replaceFirst('/', '');
@@ -763,10 +725,8 @@ Future<void> showBigPictureNotificationActionButtons(int id) async {
           color: Colors.indigoAccent,
           payload: {'uuid': 'uuid-test'}),
       actionButtons: [
-        NotificationActionButton(
-            key: 'READ', label: 'Mark as read', autoDismissable: true),
-        NotificationActionButton(
-            key: 'REMEMBER', label: 'Remember-me later', autoDismissable: false)
+        NotificationActionButton(key: 'READ', label: 'Mark as read', autoDismissable: true),
+        NotificationActionButton(key: 'REMEMBER', label: 'Remember-me later', autoDismissable: false)
       ]);
 }
 
@@ -786,12 +746,8 @@ Future<void> showBigPictureNotificationActionButtonsAndReply(int id) async {
           payload: {'uuid': 'uuid-test'}),
       actionButtons: [
         NotificationActionButton(
-            key: 'REPLY',
-            label: 'Reply',
-            autoDismissable: true,
-            buttonType: ActionButtonType.InputField),
-        NotificationActionButton(
-            key: 'REMEMBER', label: 'Remember-me later', autoDismissable: true)
+            key: 'REPLY', label: 'Reply', autoDismissable: true, buttonType: ActionButtonType.InputField),
+        NotificationActionButton(key: 'REMEMBER', label: 'Remember-me later', autoDismissable: true)
       ]);
 }
 
@@ -804,8 +760,7 @@ Future<void> showBigPictureNotificationHideExpandedLargeIcon(int id) async {
           summary: 'Summary <i>text</i>',
           body: '$lorenIpsumText<br><br>$lorenIpsumText<br><br>$lorenIpsumText',
           hideLargeIconOnExpand: true,
-          largeIcon:
-              'https://img.itdg.com.br/tdg/images/blog/uploads/2019/05/hamburguer.jpg',
+          largeIcon: 'https://img.itdg.com.br/tdg/images/blog/uploads/2019/05/hamburguer.jpg',
           bigPicture: 'https://img.itdg.com.br/tdg/images/blog/uploads/2019/05/hamburguer.jpg',
           notificationLayout: NotificationLayout.BigPicture,
           color: Colors.indigoAccent,
@@ -864,12 +819,8 @@ Future<void> showBigTextNotificationWithActionAndReply(int id) async {
           payload: {'uuid': 'uuid-test'}),
       actionButtons: [
         NotificationActionButton(
-            key: 'REPLY',
-            label: 'Reply',
-            autoDismissable: true,
-            buttonType: ActionButtonType.InputField),
-        NotificationActionButton(
-            key: 'REMEMBER', label: 'Remember-me later', autoDismissable: true)
+            key: 'REPLY', label: 'Reply', autoDismissable: true, buttonType: ActionButtonType.InputField),
+        NotificationActionButton(key: 'REMEMBER', label: 'Remember-me later', autoDismissable: true)
       ]);
 }
 
@@ -898,8 +849,7 @@ void updateNotificationMediaPlayer(int id, MediaModel? mediaNow) {
       actionButtons: [
         NotificationActionButton(
             key: 'MEDIA_PREV',
-            icon: 'resource://drawable/res_ic_prev' +
-                (MediaPlayerCentral.hasPreviousMedia ? '' : '_disabled'),
+            icon: 'resource://drawable/res_ic_prev' + (MediaPlayerCentral.hasPreviousMedia ? '' : '_disabled'),
             label: 'Previous',
             autoDismissable: false,
             showInCompactView: false,
@@ -915,8 +865,7 @@ void updateNotificationMediaPlayer(int id, MediaModel? mediaNow) {
                 buttonType: ActionButtonType.KeepOnTop)
             : NotificationActionButton(
                 key: 'MEDIA_PLAY',
-                icon: 'resource://drawable/res_ic_play' +
-                    (MediaPlayerCentral.hasAnyMedia ? '' : '_disabled'),
+                icon: 'resource://drawable/res_ic_play' + (MediaPlayerCentral.hasAnyMedia ? '' : '_disabled'),
                 label: 'Play',
                 autoDismissable: false,
                 showInCompactView: true,
@@ -924,8 +873,7 @@ void updateNotificationMediaPlayer(int id, MediaModel? mediaNow) {
                 buttonType: ActionButtonType.KeepOnTop),
         NotificationActionButton(
             key: 'MEDIA_NEXT',
-            icon: 'resource://drawable/res_ic_next' +
-                (MediaPlayerCentral.hasNextMedia ? '' : '_disabled'),
+            icon: 'resource://drawable/res_ic_next' + (MediaPlayerCentral.hasNextMedia ? '' : '_disabled'),
             label: 'Previous',
             showInCompactView: true,
             enabled: MediaPlayerCentral.hasNextMedia,
@@ -942,23 +890,23 @@ void updateNotificationMediaPlayer(int id, MediaModel? mediaNow) {
 
 int _messageIncrement = 0;
 Future<void> simulateChatConversation({required String groupKey}) async {
-  _messageIncrement++ % 4 < 2 ?
-    createMessagingNotification(
-      channelKey: 'chats',
-      groupKey: groupKey,
-      chatName: 'Jhonny\'s Group',
-      username: 'Jhonny',
-      largeIcon: 'asset://assets/images/80s-disc.jpg',
-      message: 'Jhonny\'s message $_messageIncrement',
-    ):
-    createMessagingNotification(
-      channelKey: 'chats',
-      groupKey: 'jhonny_group',
-      chatName: 'Michael\'s Group',
-      username: 'Michael',
-      largeIcon: 'asset://assets/images/dj-disc.jpg',
-      message: 'Michael\'s message $_messageIncrement',
-    );
+  _messageIncrement++ % 4 < 2
+      ? createMessagingNotification(
+          channelKey: 'chats',
+          groupKey: groupKey,
+          chatName: 'Jhonny\'s Group',
+          username: 'Jhonny',
+          largeIcon: 'asset://assets/images/80s-disc.jpg',
+          message: 'Jhonny\'s message $_messageIncrement',
+        )
+      : createMessagingNotification(
+          channelKey: 'chats',
+          groupKey: 'jhonny_group',
+          chatName: 'Michael\'s Group',
+          username: 'Michael',
+          largeIcon: 'asset://assets/images/dj-disc.jpg',
+          message: 'Michael\'s message $_messageIncrement',
+        );
 }
 
 Future<void> simulateSendResponseChatConversation({required String msg, required String groupKey}) async {
@@ -972,42 +920,38 @@ Future<void> simulateSendResponseChatConversation({required String msg, required
   );
 }
 
-Future<void> createMessagingNotification({
-  required String channelKey,
-  required String groupKey,
-  required String chatName,
-  required String username,
-  required String message,
-  String? largeIcon,
-  bool checkPermission = true
-}) async {
-    await AwesomeNotifications().createNotification(
-        content:
-        NotificationContent(
-            id: createUniqueID(AwesomeNotifications.maxID),
-            groupKey: groupKey,
-            channelKey: channelKey,
-            summary: chatName,
-            title: username,
-            body: message,
-            largeIcon: largeIcon,
-            notificationLayout: NotificationLayout.Messaging
+Future<void> createMessagingNotification(
+    {required String channelKey,
+    required String groupKey,
+    required String chatName,
+    required String username,
+    required String message,
+    String? largeIcon,
+    bool checkPermission = true}) async {
+  await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+          id: createUniqueID(AwesomeNotifications.maxID),
+          groupKey: groupKey,
+          channelKey: channelKey,
+          summary: chatName,
+          title: username,
+          body: message,
+          largeIcon: largeIcon,
+          notificationLayout: NotificationLayout.Messaging),
+      actionButtons: [
+        NotificationActionButton(
+          key: 'REPLY',
+          label: 'Reply',
+          buttonType: ActionButtonType.InputField,
+          autoDismissable: false,
         ),
-        actionButtons: [
-          NotificationActionButton(
-            key: 'REPLY',
-            label: 'Reply',
-            buttonType: ActionButtonType.InputField,
-            autoDismissable: false,
-          ),
-          NotificationActionButton(
-            key: 'READ',
-            label: 'Mark as Read',
-            autoDismissable: true,
-            buttonType: ActionButtonType.InputField,
-          )
-        ]
-    );
+        NotificationActionButton(
+          key: 'READ',
+          label: 'Mark as Read',
+          autoDismissable: true,
+          buttonType: ActionButtonType.InputField,
+        )
+      ]);
 }
 
 /* *********************************************
@@ -1020,8 +964,7 @@ Future<void> showInboxNotification(int id) async {
         id: id,
         channelKey: "inbox",
         title: '5 New mails from tester@gmail.com',
-        body:
-            '<b>You are our 10.000 visitor! Congratz!</b> You just won our prize'
+        body: '<b>You are our 10.000 visitor! Congratz!</b> You just won our prize'
             '\n'
             '<b>Want to loose weight?</b> Are you tired from false advertisements? '
             '\n'
@@ -1077,34 +1020,50 @@ Future<void> showInboxNotification(int id) async {
 Future<void> showGroupedNotifications(id) async {
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
-          id: 1,
-          channelKey: 'grouped',
-          title: 'Little Jhonny',
-          body: 'Hey dude! Look what i found!'));
+          id: 1, channelKey: 'grouped', title: 'Little Jhonny', body: 'Hey dude! Look what i found!'));
+
+  sleep(Duration(seconds: 2));
+
+  var maxStep = 10;
+  for (var simulatedStep = 1; simulatedStep <= maxStep + 1; simulatedStep++) {
+    await Future.delayed(Duration(seconds: 1), () async {
+      if (simulatedStep > maxStep) {
+        await AwesomeNotifications().createNotification(
+            content: NotificationContent(
+                id: id,
+                channelKey: 'grouped',
+                title: 'Download finished',
+                body: 'filename.txt',
+                payload: {'file': 'filename.txt', 'path': '-rmdir c://ruwindows/system32/huehuehue'},
+                locked: false));
+      } else {
+        await AwesomeNotifications().createNotification(
+            content: NotificationContent(
+                id: id,
+                channelKey: 'grouped',
+                title: 'Downloading fake file in progress ($simulatedStep of $maxStep)',
+                body: 'filename.txt',
+                payload: {'file': 'filename.txt', 'path': '-rmdir c://ruwindows/system32/huehuehue'},
+                notificationLayout: NotificationLayout.ProgressBar,
+                progress: min((simulatedStep / maxStep * 100).round(), 100),
+                locked: true));
+      }
+    });
+  }
+
+  await AwesomeNotifications()
+      .createNotification(content: NotificationContent(id: 2, channelKey: 'grouped', title: 'Cyclano', body: 'What?'));
 
   sleep(Duration(seconds: 2));
 
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
-          id: 2, channelKey: 'grouped', title: 'Cyclano', body: 'What?'));
+          id: 3, channelKey: 'grouped', title: 'Little Jhonny', body: 'This push notifications plugin is amazing!'));
 
   sleep(Duration(seconds: 2));
 
   await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-          id: 3,
-          channelKey: 'grouped',
-          title: 'Little Jhonny',
-          body: 'This push notifications plugin is amazing!'));
-
-  sleep(Duration(seconds: 2));
-
-  await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-          id: 4,
-          channelKey: 'grouped',
-          title: 'Little Jhonny',
-          body: 'Its perfect!'));
+      content: NotificationContent(id: 4, channelKey: 'grouped', title: 'Little Jhonny', body: 'Its perfect!'));
 
   sleep(Duration(seconds: 2));
 
@@ -1121,14 +1080,12 @@ Future<void> showGroupedNotifications(id) async {
 ************************************************ */
 
 Future<void> listScheduledNotifications(BuildContext context) async {
-  List<NotificationModel> activeSchedules =
-      await AwesomeNotifications().listScheduledNotifications();
+  List<NotificationModel> activeSchedules = await AwesomeNotifications().listScheduledNotifications();
   for (NotificationModel schedule in activeSchedules) {
-    debugPrint(
-        'pending notification: ['
-            'id: ${schedule.content!.id}, '
-            'title: ${schedule.content!.titleWithoutHtml}, '
-            'schedule: ${schedule.schedule.toString()}'
+    debugPrint('pending notification: ['
+        'id: ${schedule.content!.id}, '
+        'title: ${schedule.content!.titleWithoutHtml}, '
+        'schedule: ${schedule.schedule.toString()}'
         ']');
   }
   return showDialog<void>(
@@ -1149,11 +1106,11 @@ Future<void> listScheduledNotifications(BuildContext context) async {
   );
 }
 
-Future<String> getCurrentTimeZone(){
+Future<String> getCurrentTimeZone() {
   return AwesomeNotifications().getLocalTimeZoneIdentifier();
 }
 
-Future<String> getUtcTimeZone(){
+Future<String> getUtcTimeZone() {
   return AwesomeNotifications().getUtcTimeZoneIdentifier();
 }
 
@@ -1164,8 +1121,7 @@ Future<void> repeatMinuteNotification() async {
           id: -1,
           channelKey: 'scheduled',
           title: 'Notification at every single minute',
-          body:
-              'This notification was schedule to repeat at every single minute.',
+          body: 'This notification was schedule to repeat at every single minute.',
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture: 'asset://assets/images/melted-clock.png'),
       schedule: NotificationInterval(interval: 60, timeZone: localTimeZone, repeats: true));
@@ -1178,8 +1134,7 @@ Future<void> repeatMultiple5Crontab() async {
           id: -1,
           channelKey: 'scheduled',
           title: 'Notification at every 5 seconds for 1 minute',
-          body:
-          'This notification was schedule to repeat at every 5 seconds.'),
+          body: 'This notification was schedule to repeat at every 5 seconds.'),
       schedule: NotificationAndroidCrontab(
           initialDateTime: DateTime.now().add(Duration(seconds: 10)).toUtc(),
           expirationDateTime: DateTime.now().add(Duration(seconds: 10, minutes: 1)).toUtc(),
@@ -1198,11 +1153,10 @@ Future<void> repeatPreciseThreeTimes() async {
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture: 'asset://assets/images/melted-clock.png'),
       schedule: NotificationAndroidCrontab(preciseSchedules: [
-            DateTime.now().add(Duration(seconds: 10)).toUtc(),
-            DateTime.now().add(Duration(seconds: 25)).toUtc(),
-            DateTime.now().add(Duration(seconds: 45)).toUtc()
-          ],
-          repeats: true));
+        DateTime.now().add(Duration(seconds: 10)).toUtc(),
+        DateTime.now().add(Duration(seconds: 25)).toUtc(),
+        DateTime.now().add(Duration(seconds: 45)).toUtc()
+      ], repeats: true));
 }
 
 Future<void> repeatMinuteNotificationOClock() async {
@@ -1212,15 +1166,13 @@ Future<void> repeatMinuteNotificationOClock() async {
           id: -1,
           channelKey: 'scheduled',
           title: 'Notification at exactly every single minute',
-          body:
-              'This notification was schedule to repeat at every single minute at clock.',
+          body: 'This notification was schedule to repeat at every single minute at clock.',
           notificationLayout: NotificationLayout.BigPicture,
           bigPicture: 'asset://assets/images/melted-clock.png'),
       schedule: NotificationCalendar(second: 0, millisecond: 0, timeZone: localTimeZone, repeats: true));
 }
 
-Future<void> showNotificationAtScheduleCron(
-    DateTime scheduleTime) async {
+Future<void> showNotificationAtScheduleCron(DateTime scheduleTime) async {
   String timeZoneIdentifier = AwesomeNotifications.localTimeZoneIdentifier;
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -1267,23 +1219,16 @@ Future<void> showProgressNotification(int id) async {
                 channelKey: 'progress_bar',
                 title: 'Download finished',
                 body: 'filename.txt',
-                payload: {
-                  'file': 'filename.txt',
-                  'path': '-rmdir c://ruwindows/system32/huehuehue'
-                },
+                payload: {'file': 'filename.txt', 'path': '-rmdir c://ruwindows/system32/huehuehue'},
                 locked: false));
       } else {
         await AwesomeNotifications().createNotification(
             content: NotificationContent(
                 id: id,
                 channelKey: 'progress_bar',
-                title:
-                    'Downloading fake file in progress ($simulatedStep of $maxStep)',
+                title: 'Downloading fake file in progress ($simulatedStep of $maxStep)',
                 body: 'filename.txt',
-                payload: {
-                  'file': 'filename.txt',
-                  'path': '-rmdir c://ruwindows/system32/huehuehue'
-                },
+                payload: {'file': 'filename.txt', 'path': '-rmdir c://ruwindows/system32/huehuehue'},
                 notificationLayout: NotificationLayout.ProgressBar,
                 progress: min((simulatedStep / maxStep * 100).round(), 100),
                 locked: true));
@@ -1299,10 +1244,7 @@ Future<void> showIndeterminateProgressNotification(int id) async {
           channelKey: 'progress_bar',
           title: 'Downloading fake file...',
           body: 'filename.txt',
-          payload: {
-            'file': 'filename.txt',
-            'path': '-rmdir c://ruwindows/system32/huehuehue'
-          },
+          payload: {'file': 'filename.txt', 'path': '-rmdir c://ruwindows/system32/huehuehue'},
           notificationLayout: NotificationLayout.ProgressBar,
           progress: null,
           locked: true));

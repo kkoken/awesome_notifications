@@ -12,35 +12,35 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   AwesomeNotifications().initialize(
-    'resource://drawable/res_app_icon',
-    [
-      NotificationChannel(
-          channelKey: 'basic_channel',
-          channelName: 'Basic notifications',
-          channelDescription: 'Notification channel for basic tests',
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Colors.white),
-      NotificationChannel(
-          channelKey: 'badge_channel',
-          channelName: 'Badge indicator notifications',
-          channelDescription: 'Notification channel to activate badge indicator',
-          channelShowBadge: true,
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Colors.yellow),
-      NotificationChannel(
-          channelKey: 'ringtone_channel',
-          channelName: 'Ringtone Channel',
-          channelDescription: 'Channel with default ringtone',
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Colors.white,
-          defaultRingtoneType: DefaultRingtoneType.Ringtone),
-      NotificationChannel(
-          channelKey: 'updated_channel',
-          channelName: 'Channel to update',
-          channelDescription: 'Notifications with not updated channel',
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Colors.white),
-      NotificationChannel(
+      'resource://drawable/res_app_icon',
+      [
+        NotificationChannel(
+            channelKey: 'basic_channel',
+            channelName: 'Basic notifications',
+            channelDescription: 'Notification channel for basic tests',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Colors.white),
+        NotificationChannel(
+            channelKey: 'badge_channel',
+            channelName: 'Badge indicator notifications',
+            channelDescription: 'Notification channel to activate badge indicator',
+            channelShowBadge: true,
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Colors.yellow),
+        NotificationChannel(
+            channelKey: 'ringtone_channel',
+            channelName: 'Ringtone Channel',
+            channelDescription: 'Channel with default ringtone',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Colors.white,
+            defaultRingtoneType: DefaultRingtoneType.Ringtone),
+        NotificationChannel(
+            channelKey: 'updated_channel',
+            channelName: 'Channel to update',
+            channelDescription: 'Notifications with not updated channel',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Colors.white),
+        NotificationChannel(
           channelKey: 'chats',
           channelName: 'Chat groups',
           channelDescription: 'This is a simple example channel of a chat group',
@@ -48,107 +48,105 @@ void main() async {
           importance: NotificationImportance.Max,
           ledColor: Colors.white,
           defaultColor: Color(0xFF9D50DD),
-      ),
-      NotificationChannel(
-          channelKey: 'low_intensity',
-          channelName: 'Low intensity notifications',
-          channelDescription:
-              'Notification channel for notifications with low intensity',
-          defaultColor: Colors.green,
-          ledColor: Colors.green,
-          vibrationPattern: lowVibrationPattern),
-      NotificationChannel(
-          channelKey: 'medium_intensity',
-          channelName: 'Medium intensity notifications',
-          channelDescription:
-              'Notification channel for notifications with medium intensity',
-          defaultColor: Colors.yellow,
-          ledColor: Colors.yellow,
-          vibrationPattern: mediumVibrationPattern),
-      NotificationChannel(
-          channelKey: 'high_intensity',
-          channelName: 'High intensity notifications',
-          channelDescription:
-              'Notification channel for notifications with high intensity',
-          defaultColor: Colors.red,
-          ledColor: Colors.red,
-          vibrationPattern: highVibrationPattern),
-      NotificationChannel(
-          channelKey: "private_channel",
-          channelName: "Privates notification channel",
-          channelDescription: "Privates notification from lock screen",
-          playSound: true,
-          defaultColor: Colors.red,
-          ledColor: Colors.red,
-          vibrationPattern: lowVibrationPattern,
-          defaultPrivacy: NotificationPrivacy.Private),
-      NotificationChannel(
-          icon: 'resource://drawable/res_power_ranger_thunder',
-          channelKey: "custom_sound",
-          channelName: "Custom sound notifications",
-          channelDescription: "Notifications with custom sound",
-          playSound: true,
-          soundSource: 'resource://raw/res_morph_power_rangers',
-          defaultColor: Colors.red,
-          ledColor: Colors.red,
-          vibrationPattern: lowVibrationPattern),
-      NotificationChannel(
-          channelKey: "silenced",
-          channelName: "Silenced notifications",
-          channelDescription: "The most quiet notifications",
-          playSound: false,
-          enableVibration: false,
-          enableLights: false),
-      NotificationChannel(
-        icon: 'resource://drawable/res_media_icon',
-        channelKey: 'media_player',
-        channelName: 'Media player controller',
-        channelDescription: 'Media player controller',
-        defaultPrivacy: NotificationPrivacy.Public,
-        enableVibration: false,
-        enableLights: false,
-        playSound: false,
-        locked: true),
-      NotificationChannel(
-          channelKey: 'big_picture',
-          channelName: 'Big pictures',
-          channelDescription: 'Notifications with big and beautiful images',
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Color(0xFF9D50DD),
-          vibrationPattern: lowVibrationPattern),
-      NotificationChannel(
-          channelKey: 'big_text',
-          channelName: 'Big text notifications',
-          channelDescription: 'Notifications with a expandable body text',
-          defaultColor: Colors.blueGrey,
-          ledColor: Colors.blueGrey,
-          vibrationPattern: lowVibrationPattern),
-      NotificationChannel(
-          channelKey: 'inbox',
-          channelName: 'Inbox notifications',
-          channelDescription: 'Notifications with inbox layout',
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Color(0xFF9D50DD),
-          vibrationPattern: mediumVibrationPattern),
-      NotificationChannel(
-          channelKey: 'scheduled',
-          channelName: 'Scheduled notifications',
-          channelDescription: 'Notifications with schedule functionality',
-          defaultColor: Color(0xFF9D50DD),
-          ledColor: Color(0xFF9D50DD),
-          vibrationPattern: lowVibrationPattern,
-          importance: NotificationImportance.High,
-          defaultRingtoneType: DefaultRingtoneType.Alarm),
-      NotificationChannel(
+        ),
+        NotificationChannel(
+            channelKey: 'low_intensity',
+            channelName: 'Low intensity notifications',
+            channelDescription: 'Notification channel for notifications with low intensity',
+            defaultColor: Colors.green,
+            ledColor: Colors.green,
+            vibrationPattern: lowVibrationPattern),
+        NotificationChannel(
+            channelKey: 'medium_intensity',
+            channelName: 'Medium intensity notifications',
+            channelDescription: 'Notification channel for notifications with medium intensity',
+            defaultColor: Colors.yellow,
+            ledColor: Colors.yellow,
+            vibrationPattern: mediumVibrationPattern),
+        NotificationChannel(
+            channelKey: 'high_intensity',
+            channelName: 'High intensity notifications',
+            channelDescription: 'Notification channel for notifications with high intensity',
+            defaultColor: Colors.red,
+            ledColor: Colors.red,
+            vibrationPattern: highVibrationPattern),
+        NotificationChannel(
+            channelKey: "private_channel",
+            channelName: "Privates notification channel",
+            channelDescription: "Privates notification from lock screen",
+            playSound: true,
+            defaultColor: Colors.red,
+            ledColor: Colors.red,
+            vibrationPattern: lowVibrationPattern,
+            defaultPrivacy: NotificationPrivacy.Private),
+        NotificationChannel(
+            icon: 'resource://drawable/res_power_ranger_thunder',
+            channelKey: "custom_sound",
+            channelName: "Custom sound notifications",
+            channelDescription: "Notifications with custom sound",
+            playSound: true,
+            soundSource: 'resource://raw/res_morph_power_rangers',
+            defaultColor: Colors.red,
+            ledColor: Colors.red,
+            vibrationPattern: lowVibrationPattern),
+        NotificationChannel(
+            channelKey: "silenced",
+            channelName: "Silenced notifications",
+            channelDescription: "The most quiet notifications",
+            playSound: false,
+            enableVibration: false,
+            enableLights: false),
+        NotificationChannel(
+            icon: 'resource://drawable/res_media_icon',
+            channelKey: 'media_player',
+            channelName: 'Media player controller',
+            channelDescription: 'Media player controller',
+            defaultPrivacy: NotificationPrivacy.Public,
+            enableVibration: false,
+            enableLights: false,
+            playSound: false,
+            locked: true),
+        NotificationChannel(
+            channelKey: 'big_picture',
+            channelName: 'Big pictures',
+            channelDescription: 'Notifications with big and beautiful images',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Color(0xFF9D50DD),
+            vibrationPattern: lowVibrationPattern),
+        NotificationChannel(
+            channelKey: 'big_text',
+            channelName: 'Big text notifications',
+            channelDescription: 'Notifications with a expandable body text',
+            defaultColor: Colors.blueGrey,
+            ledColor: Colors.blueGrey,
+            vibrationPattern: lowVibrationPattern),
+        NotificationChannel(
+            channelKey: 'inbox',
+            channelName: 'Inbox notifications',
+            channelDescription: 'Notifications with inbox layout',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Color(0xFF9D50DD),
+            vibrationPattern: mediumVibrationPattern),
+        NotificationChannel(
+            channelKey: 'scheduled',
+            channelName: 'Scheduled notifications',
+            channelDescription: 'Notifications with schedule functionality',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Color(0xFF9D50DD),
+            vibrationPattern: lowVibrationPattern,
+            importance: NotificationImportance.High,
+            defaultRingtoneType: DefaultRingtoneType.Alarm),
+        NotificationChannel(
+            icon: 'resource://drawable/res_download_icon',
+            channelKey: 'progress_bar',
+            channelName: 'Progress bar notifications',
+            channelDescription: 'Notifications with a progress bar layout',
+            defaultColor: Colors.deepPurple,
+            ledColor: Colors.deepPurple,
+            vibrationPattern: lowVibrationPattern,
+            onlyAlertOnce: true),
+        NotificationChannel(
           icon: 'resource://drawable/res_download_icon',
-          channelKey: 'progress_bar',
-          channelName: 'Progress bar notifications',
-          channelDescription: 'Notifications with a progress bar layout',
-          defaultColor: Colors.deepPurple,
-          ledColor: Colors.deepPurple,
-          vibrationPattern: lowVibrationPattern,
-          onlyAlertOnce: true),
-      NotificationChannel(
           channelKey: 'grouped',
           channelName: 'Grouped notifications',
           channelDescription: 'Notifications with group functionality',
@@ -158,10 +156,11 @@ void main() async {
           defaultColor: Colors.lightGreen,
           ledColor: Colors.lightGreen,
           vibrationPattern: lowVibrationPattern,
-          importance: NotificationImportance.High)
-    ],
-    debug: true
-  );
+          importance: NotificationImportance.High,
+          onlyAlertOnce: true,
+        )
+      ],
+      debug: true);
 
   // Uncomment those lines after activate google services inside example/android/build.gradle
   // Create the initialization Future outside of `build`:
@@ -171,17 +170,14 @@ void main() async {
   runApp(App());
 }
 
-
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
   print('Handling a background message: ${message.messageId}');
 
-  if(
-    !StringUtils.isNullOrEmpty(message.notification?.title, considerWhiteSpaceAsEmpty: true) ||
-    !StringUtils.isNullOrEmpty(message.notification?.body, considerWhiteSpaceAsEmpty: true)
-  ){
+  if (!StringUtils.isNullOrEmpty(message.notification?.title, considerWhiteSpaceAsEmpty: true) ||
+      !StringUtils.isNullOrEmpty(message.notification?.body, considerWhiteSpaceAsEmpty: true)) {
     print('message also contained a notification: ${message.notification}');
 
     String? imageUrl;
@@ -191,23 +187,15 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     Map<String, dynamic> notificationAdapter = {
       NOTIFICATION_CHANNEL_KEY: 'basic_channel',
       NOTIFICATION_ID:
-            message.data[NOTIFICATION_CONTENT]?[NOTIFICATION_ID] ??
-            message.messageId ??
-            Random().nextInt(2147483647),
-      NOTIFICATION_TITLE:
-            message.data[NOTIFICATION_CONTENT]?[NOTIFICATION_TITLE] ??
-            message.notification?.title,
-      NOTIFICATION_BODY:
-            message.data[NOTIFICATION_CONTENT]?[NOTIFICATION_BODY] ??
-            message.notification?.body ,
-      NOTIFICATION_LAYOUT:
-          StringUtils.isNullOrEmpty(imageUrl) ? 'Default' : 'BigPicture',
+          message.data[NOTIFICATION_CONTENT]?[NOTIFICATION_ID] ?? message.messageId ?? Random().nextInt(2147483647),
+      NOTIFICATION_TITLE: message.data[NOTIFICATION_CONTENT]?[NOTIFICATION_TITLE] ?? message.notification?.title,
+      NOTIFICATION_BODY: message.data[NOTIFICATION_CONTENT]?[NOTIFICATION_BODY] ?? message.notification?.body,
+      NOTIFICATION_LAYOUT: StringUtils.isNullOrEmpty(imageUrl) ? 'Default' : 'BigPicture',
       NOTIFICATION_BIG_PICTURE: imageUrl
     };
 
     AwesomeNotifications().createNotificationFromJsonData(notificationAdapter);
-  }
-  else {
+  } else {
     AwesomeNotifications().createNotificationFromJsonData(message.data);
   }
 }
@@ -309,22 +297,14 @@ class _AppState extends State<App> {
         // Define the default TextTheme. Use this to specify the default
         // text styling for headlines, titles, bodies of text, and more.
         textTheme: TextTheme(
-          headline1: TextStyle(
-              fontSize: 64.0, height: 1.5, fontWeight: FontWeight.w500),
-          headline2: TextStyle(
-              fontSize: 52.0, height: 1.5, fontWeight: FontWeight.w500),
-          headline3: TextStyle(
-              fontSize: 48.0, height: 1.5, fontWeight: FontWeight.w500),
-          headline4: TextStyle(
-              fontSize: 32.0, height: 1.5, fontWeight: FontWeight.w500),
-          headline5: TextStyle(
-              fontSize: 28.0, height: 1.5, fontWeight: FontWeight.w500),
-          headline6: TextStyle(
-              fontSize: 22.0, height: 1.5, fontWeight: FontWeight.w500),
-          subtitle1:
-              TextStyle(fontSize: 18.0, height: 1.5, color: Colors.black54),
-          subtitle2:
-              TextStyle(fontSize: 12.0, height: 1.5, color: Colors.black54),
+          headline1: TextStyle(fontSize: 64.0, height: 1.5, fontWeight: FontWeight.w500),
+          headline2: TextStyle(fontSize: 52.0, height: 1.5, fontWeight: FontWeight.w500),
+          headline3: TextStyle(fontSize: 48.0, height: 1.5, fontWeight: FontWeight.w500),
+          headline4: TextStyle(fontSize: 32.0, height: 1.5, fontWeight: FontWeight.w500),
+          headline5: TextStyle(fontSize: 28.0, height: 1.5, fontWeight: FontWeight.w500),
+          headline6: TextStyle(fontSize: 22.0, height: 1.5, fontWeight: FontWeight.w500),
+          subtitle1: TextStyle(fontSize: 18.0, height: 1.5, color: Colors.black54),
+          subtitle2: TextStyle(fontSize: 12.0, height: 1.5, color: Colors.black54),
           button: TextStyle(fontSize: 16.0, height: 1.5, color: Colors.black54),
           bodyText1: TextStyle(fontSize: 16.0, height: 1.5),
           bodyText2: TextStyle(fontSize: 16.0, height: 1.5),
@@ -332,8 +312,7 @@ class _AppState extends State<App> {
 
         buttonTheme: ButtonThemeData(
           buttonColor: Colors.grey.shade200,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(5))),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
           textTheme: ButtonTextTheme.accent,
         ),
